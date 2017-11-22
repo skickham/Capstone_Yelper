@@ -1,0 +1,65 @@
+Capstone:
+NLP
+1) elastic search for app/nlp
+2) business recs to improve sentiment: price and sentiment
+3) sentiment over time
+6) demographic and sentiment (possibly from image too)
+8) (in MONEY)
+11) sentiment by cuisine or city??? (probably not necessary)
+14) anything to do with menu? items? descriptions (real bacon)
+15) negative review makeup vs. positive review makeup (past tense, people not food, we & us go up-->trauma narratives)
+16) consolidate sentiment
+17) eliminate or leave in based on votes 
+18) business to business similarity
+
+
+UI/UX
+5) how to search: choose by price/min stars/max distance/cuisine/keywords or just straight rec/surprise me option??
+9) rank compared to similar restaurants? if phoenix all rate chinese restaurants poorly but you love chinese, where should you go? (not nec cuz you can just see the comparisons)
+10) eliminate non-frequently reviewed businesses unless new (or maybe indicate with different colored (gray) location pin)
+13) what's hot now feature
+17) is user input to rate a couple of nearby restaurants  or fast food rests or ranking/pick top out of 3 
+18) Grab a recent tweet about the place using a the tweets geo-location
+
+
+Show me the MONEY
+4) recommendation and checkin to improve recommendation (what did i mean by this?)
+7) manager response (or lack thereof) and rating
+8) value to yelp?? gives automatic feedback on reviewers sentiment that they can feel free to adjust???? would make data more interesting or train model better....or consolidate sentiment/concept (like trip advisor)
+12) predicting which businesses will get more reviews (based on checkins or sentiments or review rate/acceleration)
+
+
+
+random:
+can we hook up spark to tensor flow so were working in a single environment?
+what is the product? what do users input and get as output?
+what can NLP contribute to the recommendation? (sentiment analysis or uses for similarity/collaborative filtering)
+
+
+In terms of how NLP can help the recommendation or drive the business, I was thinking:
+
+1) cosine similarity between reviews to aid in collaborative filtering techniques for similarity between users...or just a quick recommender
+2) sentiment analysis scores as a supplement to average rating
+3) consolidate concept/sentiments from multiple reviews to summarize a description for users
+4) elasticsearch to help with keyword searches
+5) doc2vec reviews to find similar dining experiences (would this be based on cuicine or nah or maybe or could we add in a feature to do this?) 
+6) on top of social network
+
+
+-sentiment classes (1-3 stars & 4-5 stars) rather than star predictions
+
+- word2vec visualization for ppt
+"http://www.verizon.com/about/work/jobs/6757770-business-intelligence-product-consultant?hl=455114
+https://www.linkedin.com/jobs/view/322589751/
+https://www.linkedin.com/jobs/view/324589562/
+https://www.linkedin.com/jobs/view/324589628/
+http://www.verizon.com/about/work/jobs/6880965-big-data-engineer"
+
+
+
+
+CREATE TABLE reviews_nv_2 (business_id VARCHAR(25), user_id VARCHAR(25), review_id VARCHAR(25), review_text TEXT(65535), stars INT(1), useful INT(3), state TEXT(255)); 
+
+INSERT INTO reviews_nv_2 (
+SELECT b.business_id, b.user_id, b.review_id, b.review_text, b.stars, b.useful, a.state FROM clean_businesses a JOIN reviews b ON a.business_id = b.business_id WHERE a.state = 'NV'
+);  
